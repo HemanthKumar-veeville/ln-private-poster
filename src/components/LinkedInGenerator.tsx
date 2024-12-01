@@ -36,8 +36,34 @@ const LinkedInGenerator: React.FC = () => {
 
     const prompt =
       includeScenario && scenario
-        ? `Write a medium, hilariously funny LinkedIn-style post about the following situation: "${scenario}". Describe what is happening to me, and have me explain it in a snappy, relatable way. Make the story engaging, lighthearted, and easy to follow, with playful humour and emojis to add flair. Avoid using phrases like 'So, picture this:' to start the story. Use 'I' and 'I'm' to narrate the story instead of 'you' or 'you're'. Keep it concise, and ensure it ends with a funny and punchy closing line. Focus on me as the protagonist, always narrating from my perspective.`
-        : `Write a medium, hilariously funny LinkedIn-style post about a random, everyday situation. Describe what is happening to me, and have me explain it in a snappy, relatable way. Make the story engaging, lighthearted, and easy to follow, with playful humour and emojis to add flair. Avoid using phrases like 'So, picture this:' to start the story. Use 'I' and 'I'm' to narrate the story instead of 'you' or 'you're'. Keep it concise, and ensure it ends with a funny and punchy closing line. Focus on me as the protagonist, always narrating from my perspective.`;
+        ? `Write a funny, creative LinkedIn-style post in the following format:
+---
+🥄 *[Insert a quirky or humorous title related to the situation here]*
+
+Describe the situation: "${scenario}" in a playful, engaging, and lighthearted tone. Narrate it from my perspective ('I', 'I'm'). Use relatable humor and emojis to add flair.
+
+Conclude with:
+🔑 *Moral of the story?*
+- Include 2-3 concise, witty takeaways from the story.
+- Frame these insights positively, making them motivational or funny.
+
+End with relevant hashtags like #OfficeWisdom or #LifeLessons.
+---
+Make the story concise and entertaining while keeping the format exactly like the one above.`
+        : `Write a funny, creative LinkedIn-style post in the following format:
+---
+🥄 *[Insert a quirky or humorous title related to an everyday situation]*
+
+Describe a random, relatable situation in a playful, engaging, and lighthearted tone. Narrate it from my perspective ('I', 'I'm'). Use relatable humor and emojis to add flair.
+
+Conclude with:
+🔑 *Moral of the story?*
+- Include 2-3 concise, witty takeaways from the story.
+- Frame these insights positively, making them motivational or funny.
+
+End with relevant hashtags like #OfficeWisdom or #LifeLessons.
+---
+Make the story concise and entertaining while keeping the format exactly like the one above.`;
 
     try {
       const response = await axios.post(
@@ -48,11 +74,11 @@ const LinkedInGenerator: React.FC = () => {
             {
               role: "system",
               content:
-                "You are a creative assistant who generates medium, crisp, and hilariously engaging LinkedIn posts. Write in a highly relatable, first-person narrative style, keeping the tone lighthearted, quirky, and easy to follow.",
+                "You are a creative assistant who writes dynamic, engaging, and hilariously funny LinkedIn posts in a specific format. Posts should include a catchy title with an emoji, a humorous and relatable narrative, a moral with concise takeaways, and end with relevant hashtags.",
             },
             { role: "user", content: prompt },
           ],
-          max_tokens: 200,
+          max_tokens: 300,
           temperature: 0.8,
         },
         {
